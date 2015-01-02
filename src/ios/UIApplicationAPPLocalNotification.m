@@ -23,9 +23,26 @@
 #import "UILocalNotificationAPPLocalNotification.h"
 
 #import <Availability.h>
+NSString* const UIApplicationRegisterUserNotificationSettings = @"UIApplicationRegisterUserNotificationSettings";
 
 @implementation UIApplication (APPLocalNotification)
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+/**
+ * Tells the delegate what types of notifications may be used
+ * to get the user’s attention.
+ */
+- (void)                    application:(UIApplication*)application
+    didRegisterUserNotificationSettings:(UIUserNotificationSettings*)settings
+{
+    NSNotificationCenter* center = [NSNotificationCenter
+                                    defaultCenter];
+
+    // re-post (broadcast)
+    [center postNotificationName:UIApplicationRegisterUserNotificationSettings
+                          object:settings];
+}
+#endif
 #pragma mark -
 #pragma mark Permissions
 

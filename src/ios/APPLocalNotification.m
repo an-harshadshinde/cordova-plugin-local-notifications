@@ -21,9 +21,9 @@
 
 #import "APPLocalNotification.h"
 #import "APPLocalNotificationOptions.h"
-#import "AppDelegate+APPLocalNotification.h"
-#import "UIApplication+APPLocalNotification.h"
-#import "UILocalNotification+APPLocalNotification.h"
+#import "AppDelegateAPPLocalNotification.h"
+#import "UIApplicationAPPLocalNotification.h"
+#import "UILocalNotificationAPPLocalNotification.h"
 
 #import <Availability.h>
 

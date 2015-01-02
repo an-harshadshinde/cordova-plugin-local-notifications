@@ -19,8 +19,8 @@
  under the License.
  */
 
-#import "UIApplication+APPLocalNotification.h"
-#import "UILocalNotification+APPLocalNotification.h"
+#import "UIApplicationAPPLocalNotification.h"
+#import "UILocalNotificationAPPLocalNotification.h"
 
 #import <Availability.h>
 

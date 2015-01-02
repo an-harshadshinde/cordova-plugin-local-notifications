@@ -39,14 +39,14 @@
         <header-file src="src/ios/APPLocalNotificationOptions.h" />
         <source-file src="src/ios/APPLocalNotificationOptions.m" />
 
-        <header-file src="src/ios/AppDelegate+APPLocalNotification.h" />
-        <header-file src="src/ios/AppDelegate+APPLocalNotification.m" />
+        <header-file src="src/ios/AppDelegateAPPLocalNotification.h" />
+        <header-file src="src/ios/AppDelegateAPPLocalNotification.m" />
 
-        <source-file src="src/ios/UIApplication+APPLocalNotification.h" />
-        <source-file src="src/ios/UIApplication+APPLocalNotification.m" />
+        <source-file src="src/ios/UIApplicationAPPLocalNotification.h" />
+        <source-file src="src/ios/UIApplicationAPPLocalNotification.m" />
 
-        <header-file src="src/ios/UILocalNotification+APPLocalNotification.h" />
-        <source-file src="src/ios/UILocalNotification+APPLocalNotification.m" />
+        <header-file src="src/ios/UILocalNotificationAPPLocalNotification.h" />
+        <source-file src="src/ios/UILocalNotificationAPPLocalNotification.m" />
     </platform>
 
     <!-- android -->

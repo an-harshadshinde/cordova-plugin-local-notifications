@@ -19,7 +19,7 @@
  under the License.
  */
 
-#import "AppDelegate+APPLocalNotification.h"
+#import "AppDelegateAPPLocalNotification.h"
 
 #import <Availability.h>
 

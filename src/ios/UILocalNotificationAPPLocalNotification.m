@@ -19,7 +19,7 @@
  under the License.
  */
 
-#import "UILocalNotification+APPLocalNotification.h"
+#import "UILocalNotificationAPPLocalNotification.h"
 #import "APPLocalNotificationOptions.h"
 #import <objc/runtime.h>
 

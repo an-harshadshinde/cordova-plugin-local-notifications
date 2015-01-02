@@ -19,29 +19,3 @@
  under the License.
  */
 
-#import "AppDelegateAPPLocalNotification.h"
-
-#import <Availability.h>
-
-NSString* const UIApplicationRegisterUserNotificationSettings = @"UIApplicationRegisterUserNotificationSettings";
-
-@implementation AppDelegate (APPLocalNotification)
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-/**
- * Tells the delegate what types of notifications may be used
- * to get the user’s attention.
- */
-- (void)                    application:(UIApplication*)application
-    didRegisterUserNotificationSettings:(UIUserNotificationSettings*)settings
-{
-    NSNotificationCenter* center = [NSNotificationCenter
-                                    defaultCenter];
-
-    // re-post (broadcast)
-    [center postNotificationName:UIApplicationRegisterUserNotificationSettings
-                          object:settings];
-}
-#endif
-
-@end

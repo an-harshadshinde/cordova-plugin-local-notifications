@@ -19,18 +19,4 @@
  under the License.
  */
 
-#import "AppDelegate.h"
 
-#import <Availability.h>
-
-extern NSString* const UIApplicationRegisterUserNotificationSettings;
-
-@interface AppDelegate (APPLocalNotification)
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-// Tells the delegate what types of notifications may be used
-- (void)                    application:(UIApplication*)application
-    didRegisterUserNotificationSettings:(UIUserNotificationSettings*)settings;
-#endif
-
-@end

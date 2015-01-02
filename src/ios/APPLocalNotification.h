@@ -19,26 +19,3 @@
  under the License.
  */
 
-#import <Foundation/Foundation.h>
-#import <Cordova/CDVPlugin.h>
-
-@interface APPLocalNotification : CDVPlugin
-
-// Executes all queued events
-- (void) deviceready:(CDVInvokedUrlCommand*)command;
-// Schedules a new local notification
-- (void) add:(CDVInvokedUrlCommand*)command;
-// Cancels a given local notification
-- (void) cancel:(CDVInvokedUrlCommand*)command;
-// Cancels all currently scheduled notifications
-- (void) cancelAll:(CDVInvokedUrlCommand*)command;
-// Checks wether a notification with an ID is scheduled
-- (void) isScheduled:(CDVInvokedUrlCommand*)command;
-// Retrieves a list of ids from all currently pending notifications
-- (void) getScheduledIds:(CDVInvokedUrlCommand*)command;
-// Informs if the app has the permission to show notifications
-- (void) hasPermission:(CDVInvokedUrlCommand*)command;
-// Registers permission to show notifications
-- (void) registerPermission:(CDVInvokedUrlCommand*)command;
-
-@end

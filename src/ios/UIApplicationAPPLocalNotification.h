@@ -18,6 +18,11 @@
  specific language governing permissions and limitations
  under the License.
  */
+#import "AppDelegate.h"
+
+#import <Availability.h>
+
+extern NSString* const UIApplicationRegisterUserNotificationSettings;
 
 @interface UIApplication (APPLocalNotification)
 
@@ -25,6 +30,11 @@
 @property (readonly, getter=triggeredLocalNotificationIds) NSArray* triggeredLocalNotificationIds;
 @property (readonly, getter=scheduledLocalNotificationIds) NSArray* scheduledLocalNotificationIds;
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+// Tells the delegate what types of notifications may be used
+- (void)                    application:(UIApplication*)application
+    didRegisterUserNotificationSettings:(UIUserNotificationSettings*)settings;
+#endif
 // If the app has the permission to schedule local notifications
 - (BOOL) hasPermissionToScheduleLocalNotifications;
 // Ask for permission to schedule local notifications

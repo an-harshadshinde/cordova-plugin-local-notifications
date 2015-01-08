@@ -40,5 +40,5 @@
 - (void) hasPermission:(CDVInvokedUrlCommand*)command;
 // Registers permission to show notifications
 - (void) registerPermission:(CDVInvokedUrlCommand*)command;
-
+- (void) showForegroundNotification:(CDVInvokedUrlCommand*)command;
 @end

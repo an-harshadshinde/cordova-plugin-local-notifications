@@ -269,6 +269,11 @@ exports.clearAll = function (callback, scope) {
         cordova.exec(callbackFn, null, 'LocalNotification', 'clearAll', []);
 };
 
+exports.showForegroundNotification = function (callback, scope) {
+        var callbackFn = this.createCallbackFn(callback, scope);
+
+        cordova.exec(callbackFn, null, 'LocalNotification', 'showForegroundNotification', []);
+};
 /**
  * Cancels the specified notification.
  *

@@ -122,10 +122,7 @@
 - (void) showForegroundNotification:(CDVInvokedUrlCommand*)command
 {
     
-     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    localNotification.alertBody = @"Test Message";
-    localNotification.fireDate = [NSDate date];
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+   
 
 }
 /**

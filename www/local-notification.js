@@ -275,9 +275,7 @@ exports.showForegroundNotification = function (callback, scope) {
         cordova.exec(callbackFn, null, 'LocalNotification', 'showForegroundNotification', []);
 };
 exports.selectFile = function (callback, scope) {
-               alert("1");
-               
-               cordova.exec(callback, null, 'LocalNotification', 'selectFile', []);
+                      cordova.exec(callback, null, 'LocalNotification', 'selectFile', []);
 };
 /**
  * Cancels the specified notification.

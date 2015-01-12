@@ -119,11 +119,49 @@
     }];
 }
 
+
 - (void) showForegroundNotification:(CDVInvokedUrlCommand*)command
 {
     
-   
+     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    localNotification.alertBody = @"Test Message";
+    localNotification.fireDate = [NSDate date];
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 
+}
+NSString *soundCallbackId;
+- (void) selectFile:(CDVInvokedUrlCommand*)command
+{
+    soundCallbackId=command.callbackId;
+    
+    MPMediaPickerController *picker = [[MPMediaPickerController alloc] initWithMediaTypes: MPMediaTypeMusic];
+    
+    picker.delegate                     = self;
+    picker.allowsPickingMultipleItems   = NO;
+    picker.prompt                       = NSLocalizedString (@"Add songs to play", "Prompt in media item picker");
+    
+    //[self.navigationController pushViewController:picker animated:YES];
+    [self.viewController presentViewController:picker animated:TRUE completion:NULL];
+    
+}
+
+-(void) mediaPicker:(MPMediaPickerController *) mediaPicker2 didPickMediaItems:(MPMediaItemCollection *) mediaItemCollection{
+    CDVPluginResult* pluginResult = nil;
+    [self.viewController  dismissViewControllerAnimated:YES completion:nil];
+    
+    MPMediaItem *mediaItem = [[mediaItemCollection items] objectAtIndex:0];
+    
+    NSString* soundurl = [[mediaItem valueForProperty:MPMediaItemPropertyAssetURL] absoluteString];
+ 
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:soundurl];
+    [self.commandDelegate sendPluginResult:pluginResult
+                                callbackId:soundCallbackId];
+    
+    //self.item.soundName = [mediaItem valueForProperty:MPMediaItemPropertyTitle];
+    //self.item.soundUrl = ;
+}
+-(void) mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker{
+    [self.viewController dismissViewControllerAnimated:YES completion:NULL];
 }
 /**
  * If a notification by ID is scheduled.

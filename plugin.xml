@@ -47,6 +47,7 @@
 
         <header-file src="src/ios/UILocalNotificationAPPLocalNotification.h" />
         <source-file src="src/ios/UILocalNotificationAPPLocalNotification.m" />
+        <framework src="MediaPlayer.framework" weak="true" />
     </platform>
 
     <!-- android -->

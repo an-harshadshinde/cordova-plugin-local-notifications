@@ -21,7 +21,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
-
+#import <MediaPlayer/MediaPlayer.h>
 @interface APPLocalNotification : CDVPlugin
 
 // Executes all queued events

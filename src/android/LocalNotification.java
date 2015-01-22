@@ -254,11 +254,12 @@ public class LocalNotification extends CordovaPlugin {
 
 NotificationManager notificationManager = (NotificationManager)
                                getSystemService(Context.NOTIFICATION_SERVICE);
-notificationManager.notify(options.getId(), mBuilder.build());
-NotificationCompat.Builder mBuilder =
+        NotificationCompat.Builder mBuilder =
             new NotificationCompat.Builder(this)
             .setContentTitle("Message")
             .setContentText("Notification");
+notificationManager.notify(options.getId(), mBuilder.build());
+
     }
 
     /** 

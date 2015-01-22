@@ -105,11 +105,11 @@
         <source-file src="src/android/Restore.java"           target-dir="src/de/appplant/cordova/plugin/localnotification" />
         <source-file src="src/android/ReceiverActivity.java"  target-dir="src/de/appplant/cordova/plugin/localnotification" />
 	<source-file src="src/android/DeleteIntentReceiver.java"  target-dir="src/de/appplant/cordova/plugin/localnotification" />
-<source-file src="src/android/notification/Options.java" target-dir="src/de/appplant/cordova/plugin/notification" /> 	 	
-109	<source-file src="src/android/notification/Asset.java" target-dir="src/de/appplant/cordova/plugin/notification" /> 	 	
-110	<source-file src="src/android/notification/Manager.java" target-dir="src/de/appplant/cordova/plugin/notification" /> 	 	
-111	<source-file src="src/android/notification/NotificationBuilder.java" target-dir="src/de/appplant/cordova/plugin/notification" /> 	 	
-112	<source-file src="src/android/notification/NotificationWrapper.java" target-dir="src/de/appplant/cordova/plugin/notification" /> 
+	<source-file src="src/android/notification/Options.java" target-dir="src/de/appplant/cordova/plugin/notification" /> 	 	
+	<source-file src="src/android/notification/Asset.java" target-dir="src/de/appplant/cordova/plugin/notification" /> 	 	
+	<source-file src="src/android/notification/Manager.java" target-dir="src/de/appplant/cordova/plugin/notification" /> 	 	
+	<source-file src="src/android/notification/NotificationBuilder.java" target-dir="src/de/appplant/cordova/plugin/notification" /> 	 	
+	<source-file src="src/android/notification/NotificationWrapper.java" target-dir="src/de/appplant/cordova/plugin/notification" /> 
 
     </platform>
 

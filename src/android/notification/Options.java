@@ -19,47 +19,40 @@
     under the License.
 */
 
-package de.appplant.cordova.plugin.localnotification;
+package de.appplant.cordova.plugin.notification;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.StrictMode;
-import android.os.StrictMode.ThreadPolicy;
 
 /**
  * Class that helps to store the options that can be specified per alarm.
  */
 public class Options {
-
     private JSONObject options = new JSONObject();
     private String packageName = null;
     private long interval      = 0;
+    private Context context;
 
-    Options (Activity activity) {
-        packageName = activity.getPackageName();
+
+
+    public Options(Context context){
+    	this.context= context;
+    	this.packageName = context.getPackageName();
     }
-
-    Options (Context context) {
-        packageName = context.getPackageName();
-    }
-
+    
+    
     /**
      * Parses the given properties
      */
@@ -152,18 +145,13 @@ public class Options {
      * Returns the path of the notification's sound file
      */
     public Uri getSound () {
-        String sound = options.optString("sound", null);
-
-        if (sound != null) {
-            try {
-                int soundId = (Integer) RingtoneManager.class.getDeclaredField(sound).get(Integer.class);
-
-                return RingtoneManager.getDefaultUri(soundId);
-            } catch (Exception e) {
-                return Uri.parse(sound);
-            }
+        Uri soundUri = null;
+        try{
+        	soundUri = Uri.parse(options.optString("soundUri"));
+        	return soundUri;
+        } catch (Exception e){
+        	e.printStackTrace();
         }
-
         return null;
     }
 
@@ -173,17 +161,13 @@ public class Options {
     public Bitmap getIcon () {
         String icon = options.optString("icon", "icon");
         Bitmap bmp = null;
-
-        if (icon.startsWith("http")) {
-            bmp = getIconFromURL(icon);
-        } else if (icon.startsWith("file://")) {
-            bmp = getIconFromURI(icon);
+        Uri iconUri = null;
+        try{
+        	iconUri = Uri.parse(options.optString("iconUri"));
+            bmp = getIconFromUri(iconUri);
+        } catch (Exception e){
+        	bmp = getIconFromRes(icon);
         }
-
-        if (bmp == null) {
-            bmp = getIconFromRes(icon);
-        }
-
         return bmp;
     }
 
@@ -261,6 +245,14 @@ public class Options {
 
         return aRGB;
     }
+   
+	/**
+	 * Shows the behavior of notifications when the application is in foreground 
+	 * 
+	 */
+	public boolean getForegroundMode(){
+		return options.optBoolean("foregroundMode",false);	
+	}
 
     /**
      * Returns numerical icon Value
@@ -289,7 +281,7 @@ public class Options {
      *      The corresponding bitmap
      */
     private Bitmap getIconFromRes (String icon) {
-        Resources res = LocalNotification.context.getResources();
+        Resources res = context.getResources();
         int iconId = 0;
 
         iconId = getIconValue(packageName, icon);
@@ -307,41 +299,7 @@ public class Options {
         return bmp;
     }
 
-    /**
-     * Converts an Image URL to Bitmap.
-     *
-     * @param src
-     *      The external image URL
-     * @return
-     *      The corresponding bitmap
-     */
-    private Bitmap getIconFromURL (String src) {
-        Bitmap bmp = null;
-        ThreadPolicy origMode = StrictMode.getThreadPolicy();
 
-        try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            StrictMode.ThreadPolicy policy =
-                    new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-            StrictMode.setThreadPolicy(policy);
-
-            connection.setDoInput(true);
-            connection.connect();
-
-            InputStream input = connection.getInputStream();
-
-            bmp = BitmapFactory.decodeStream(input);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        StrictMode.setThreadPolicy(origMode);
-
-        return bmp;
-    }
 
     /**
      * Converts an Image URI to Bitmap.
@@ -351,19 +309,25 @@ public class Options {
      * @return
      *      The corresponding bitmap
      */
-    private Bitmap getIconFromURI (String src) {
-        AssetManager assets = LocalNotification.context.getAssets();
+    private Bitmap getIconFromUri (Uri uri) throws IOException {
         Bitmap bmp = null;
-
-        try {
-            String path = src.replace("file:/", "www");
-            InputStream input = assets.open(path);
-
-            bmp = BitmapFactory.decodeStream(input);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+          
+        InputStream input = context.getContentResolver().openInputStream(uri);
+        bmp = BitmapFactory.decodeStream(input);
 
         return bmp;
     }
+    
+    /**
+     * Function to set the value of "initialDate" in the JSONArray
+     */
+    public void setInitDate(){
+    	long initialDate = options.optLong("date", 0) * 1000;
+    	try {
+    		options.put("initialDate", initialDate);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+    }
+	
 }

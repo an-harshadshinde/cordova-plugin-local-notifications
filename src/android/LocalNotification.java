@@ -252,14 +252,14 @@ public class LocalNotification extends CordovaPlugin {
         am.set(AlarmManager.RTC_WAKEUP, triggerTime, pi);
         
 
-NotificationManager notificationManager = (NotificationManager)
+/*NotificationManager notificationManager = (NotificationManager)
                                getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder mBuilder =
             new NotificationCompat.Builder(this)
             .setContentTitle("Message")
             .setContentText("Notification");
 notificationManager.notify(options.getId(), mBuilder.build());
-
+*/
     }
 
     /** 
